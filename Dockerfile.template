@@ -22,5 +22,5 @@ VOLUME ["/etc/gnatsd", "/var/log/nats/" ]
 
 EXPOSE 4222 8222 6222
 
-CMD ["/gnatsd", "-c", "/etc/gnatsd/gnatsd.conf"]
+CMD ["/gnatsd", "-m", "8222"]
 
