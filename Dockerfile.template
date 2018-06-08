@@ -2,14 +2,25 @@ FROM resin/%%RESIN_MACHINE_NAME%%-golang:slim
 
 ENV INITSYSTEM on
 
-# RUN apt-get -q update && apt-get install -yq --no-install-recommends \
-# 	build-essential \
-# 	&& apt-get clean && rm -rf /var/lib/apt/lists/*
+ENV GNATSD_VERSION 1.1.0
+
+RUN apt-get -q update && apt-get install -yq --no-install-recommends \
+ 	build-essential \
+ 	&& apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /go/src/github.com/resin-io-projects/resin-go-hello-world
 
-COPY . ./
+ADD https://github.com/nats-io/gnatsd/releases/download/v${GNATSD_VERSION}/gnatsd-v${GNATSD_VERSION}-linux-arm7.zip /gnatsd.zip
 
-RUN go get github.com/nats-io/gnatsd
+RUN unzip /gnatsd.zip && \
+    mv gnatsd-v${GNATSD_VERSION}-linux-arm7/gnatsd /gnatsd && \
+    rm -fr gnatsd-v${GNATSD_VERSION}-linux-arm7 /gnatsd.zip && \
+    mkdir -p /etc/gnatsd && \
+    mkdir -p /var/log/nats
 
-CMD ./gnatsd
+VOLUME ["/etc/gnatsd", "/var/log/nats/" ]
+
+EXPOSE 4222 8222 6222
+
+CMD ["/gnatsd", "-c", "/etc/gnatsd/gnatsd.conf"]
+
