@@ -10,6 +10,6 @@ WORKDIR /go/src/github.com/resin-io-projects/resin-go-hello-world
 
 COPY . ./
 
-RUN go build
+RUN go get github.com/nats-io/gnatsd
 
-CMD ./resin-go-hello-world
+CMD ./gnatsd
