@@ -2,7 +2,9 @@ FROM resin/%%RESIN_MACHINE_NAME%%-golang:slim
 
 ENV INITSYSTEM on
 
-ENV GNATSD_VERSION 1.1.0
+# ENV GNATSD_VERSION 1.1.0
+
+ENV NATS_STREAMING_VERSION 0.9.2
 
 ENV GOBIN $GOPATH/bin
 
@@ -14,18 +16,28 @@ WORKDIR /go/src/github.com/resin-io-projects/resin-go-hello-world
 
 COPY 	. ./
 
-ADD https://github.com/nats-io/gnatsd/releases/download/v${GNATSD_VERSION}/gnatsd-v${GNATSD_VERSION}-linux-arm7.zip /gnatsd.zip
+# ADD https://github.com/nats-io/gnatsd/releases/download/v${GNATSD_VERSION}/gnatsd-v${GNATSD_VERSION}-linux-arm7.zip /gnatsd.zip
 
-RUN unzip /gnatsd.zip && \
-    mv gnatsd-v${GNATSD_VERSION}-linux-arm7/gnatsd /gnatsd && \
-    rm -fr gnatsd-v${GNATSD_VERSION}-linux-arm7 /gnatsd.zip && \
+ADD https://github.com/nats-io/nats-streaming-server/releases/download/v${NATS_STREAMING_VERSION}/nats-streaming-server-v${NATS_STREAMING_VERSION}-linux-arm7.zip /nats-streaming-server.zip
+
+
+# RUN unzip /gnatsd.zip && \
+#    mv gnatsd-v${GNATSD_VERSION}-linux-arm7/gnatsd /gnatsd && \
+#    rm -fr gnatsd-v${GNATSD_VERSION}-linux-arm7 /gnatsd.zip && \
+#    mkdir -p /etc/gnatsd && \
+#    mkdir -p /var/log/nats
+
+RUN unzip /nats-streaming-server.zip && \
+    mv nats-streaming-server-v${NATS_STREAMING_VERSION}-linux-arm7/nats-streaming-server /nats-streaming-server && \
+    rm -fr nats-streaming-server-v${NATS_STREAMING_VERSION}-linux-arm7 /nats-streaming-server.zip && \
     mkdir -p /etc/gnatsd && \
     mkdir -p /var/log/nats
+
 
 VOLUME ["/etc/gnatsd", "/var/log/nats/" ]
 
 EXPOSE 4222 8222 6222
 
-CMD ["/gnatsd", "-c", "gnatsd.conf"]
+CMD ["/nats-streaming-server", "-c", "gnatsd.conf"]
 
 # CMD ["/gnatsd", "-m", "8222" ]
