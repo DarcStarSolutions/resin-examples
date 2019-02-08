@@ -1,4 +1,4 @@
-FROM balenalib/%%BALENA_MACHINE_NAME%%-golang:1.11.2-latest-build
+FROM balenalib/raspberrypi3-golang:1.11.2-latest-build
 
 ENV INITSYSTEM on
 ENV NATS_STREAMING_VERSION 0.11.2
