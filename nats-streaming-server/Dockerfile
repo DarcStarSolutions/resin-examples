@@ -7,7 +7,7 @@ ENV ARCH arm7
 
 RUN apt-get -q update
 RUN apt-get install -yq --no-install-recommends \
- 	unzip && \
+   wget unzip && \
 	apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /go/src/github.com/resin-io-projects/resin-go-hello-world
