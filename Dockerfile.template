@@ -7,7 +7,7 @@ ENV INITSYSTEM on
 ENV NATS_STREAMING_VERSION 0.11.2
 ENV GOBIN $GOPATH/bin
 ENV OS linux
-ENV ARCH arm64
+ENV ARCH arm7
 
 RUN apt-get -q update && apt-get install -yq --no-install-recommends \
  	build-essential unzip && \
@@ -17,16 +17,9 @@ WORKDIR /go/src/github.com/resin-io-projects/resin-go-hello-world
 
 COPY 	. ./
 
-# ADD https://github.com/nats-io/gnatsd/releases/download/v${GNATSD_VERSION}/gnatsd-v${GNATSD_VERSION}-linux-${ARCH}.zip /gnatsd.zip
 
 ADD https://github.com/nats-io/nats-streaming-server/releases/download/v${NATS_STREAMING_VERSION}/nats-streaming-server-v${NATS_STREAMING_VERSION}-${OS}-${ARCH}.zip /nats-streaming-server.zip
 
-
-# RUN unzip /gnatsd.zip && \
-#    mv gnatsd-v${GNATSD_VERSION}-linux-/gnatsd /gnatsd && \
-#    rm -fr gnatsd-v${GNATSD_VERSION}-linux-arm7 /gnatsd.zip && \
-#    mkdir -p /etc/gnatsd && \
-#    mkdir -p /var/log/nats
 
 RUN unzip /nats-streaming-server.zip && \
     mv nats-streaming-server-v${NATS_STREAMING_VERSION}-${OS}-${ARCH}/nats-streaming-server /nats-streaming-server && \
@@ -39,7 +32,7 @@ VOLUME ["/etc/gnatsd", "/var/log/nats/" ]
 
 EXPOSE 4222 8222 6222
 
-# CMD ["/nats-streaming-server", "-c", "gnatsd.conf"]
-CMD ["ls","-lart", "/"]
+CMD ["/nats-streaming-server", "-c", "gnatsd.conf"]
+# CMD ["ls","-lart", "/"]
 # CMD ["/gnatsd", "-m", "8222" ]
 
