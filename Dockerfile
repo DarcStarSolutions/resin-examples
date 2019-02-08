@@ -10,12 +10,12 @@ RUN echo "$BURP"
 RUN echo $BURP
 RUN echo ${BURP}
 
-RUN apt-get -q update
-RUN apt-get full-upgrade
+#RUN apt-get -q update
+#RUN apt-get full-upgrade
 
-RUN apt-get install -yq --no-install-recommends \
- 	build-essential unzip && \
-	apt-get clean && rm -rf /var/lib/apt/lists/*
+#RUN apt-get install -yq --no-install-recommends \
+# 	build-essential unzip && \
+#	apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /go/src/github.com/resin-io-projects/resin-go-hello-world
 
