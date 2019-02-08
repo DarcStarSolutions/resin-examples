@@ -15,7 +15,7 @@ WORKDIR /go/src/github.com/resin-io-projects/resin-go-hello-world
 COPY 	./* ./
 
 
-ADD https://github.com/nats-io/nats-streaming-server/releases/download/v${NATS_STREAMING_VERSION}/nats-streaming-server-v${NATS_STREAMING_VERSION}-${OS}-${ARCH}.zip /nats-streaming-server.zip
+RUN wget -O  /nats-streaming-server.zip https://github.com/nats-io/nats-streaming-server/releases/download/v${NATS_STREAMING_VERSION}/nats-streaming-server-v${NATS_STREAMING_VERSION}-${OS}-${ARCH}.zip
 
 
 RUN unzip /nats-streaming-server.zip && \
