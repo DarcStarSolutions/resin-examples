@@ -1,4 +1,4 @@
-FROM balenlib/raspberrypi3-jessie-build
+FROM balenalib/raspberrypi3-jessie-build
 
 COPY ./grafana.ini /usr/share/grafana/conf/custom.ini
 COPY ./grafana.db /tmp
