@@ -6,7 +6,7 @@ ENV INITSYSTEM on
 
 ENV NATS_STREAMING_VERSION 0.11.2
 ENV GOBIN $GOPATH/bin
-ENV OS
+ENV OS linux
 ENV ARCH arm64
 
 RUN apt-get -q update && apt-get install -yq --no-install-recommends \
