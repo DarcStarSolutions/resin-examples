@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -yq \
   wget && \
   apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN wget -O /tmp/grafana.deb https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana_5.3.1_armhf.deb && \
+RUN wget -O /tmp/grafana.deb https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana_5.4.3_armhf.deb && \
     dpkg -i /tmp/grafana.deb && rm /tmp/grafana.deb
 
 CMD ["/bin/sh","/usr/src/app/start.sh"]
