@@ -1,4 +1,4 @@
-FROM balenlib/raspberrypi3-debian:stretch
+FROM balenlib/raspberrypi3-debian
 
 RUN apt-get update && apt-get install -yq \
   fontconfig-config fonts-dejavu-core libfontconfig1 ucf \
