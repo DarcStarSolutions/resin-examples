@@ -6,20 +6,16 @@ ENV GOBIN $GOPATH/bin
 ENV OS linux
 ENV ARCH arm7
 
-RUN echo "$BURP"
-RUN echo $BURP
-RUN echo ${BURP}
+RUN apt-get -q update
+RUN apt-get full-upgrade
 
-#RUN apt-get -q update
-#RUN apt-get full-upgrade
-
-#RUN apt-get install -yq --no-install-recommends \
-# 	build-essential unzip && \
-#	apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get install -yq --no-install-recommends \
+ 	unzip && \
+	apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /go/src/github.com/resin-io-projects/resin-go-hello-world
 
-COPY 	. ./
+COPY 	.. ./
 
 
 ADD https://github.com/nats-io/nats-streaming-server/releases/download/v${NATS_STREAMING_VERSION}/nats-streaming-server-v${NATS_STREAMING_VERSION}-${OS}-${ARCH}.zip /nats-streaming-server.zip
@@ -37,6 +33,3 @@ VOLUME ["/etc/gnatsd", "/var/log/nats/" ]
 EXPOSE 4222 8222 6222
 
 CMD ["/nats-streaming-server", "-c", "gnatsd.conf"]
-# CMD ["ls","-lart", "/"]
-# CMD ["/gnatsd", "-m", "8222" ]
-

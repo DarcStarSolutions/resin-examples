@@ -1,0 +1,21 @@
+version: '2'
+volumes:
+  resin-data:
+services:
+  nats-streaming-server:
+    restart: always
+    build: ./nats-streaming-server
+    volumes:
+      - 'resin-data:/data'
+  influxdb:
+    restart: always
+    build: ./influxdb
+    volumes:
+      - 'resin-data:/data'
+  grafana:
+    restart: always
+    build: ./grafana
+    ports:
+      - "80:3000"
+    volumes:
+      - 'resin-data:/data'

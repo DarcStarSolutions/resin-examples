@@ -1,4 +1,4 @@
-package main
+package nats_streaming_server
 
 import (
 	"fmt"
