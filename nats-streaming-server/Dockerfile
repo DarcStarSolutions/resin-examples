@@ -27,4 +27,6 @@ RUN unzip /nats-streaming-server.zip && \
 
 VOLUME ["/etc/gnatsd", "/var/log/nats/" ]
 
-CMD ["/nats-streaming-server", "-c", "gnatsd.conf"]
+# CMD ["/nats-streaming-server", "-c", "gnatsd.conf"]
+
+CMD ["/nats-streaming-server"]
