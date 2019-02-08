@@ -1,4 +1,4 @@
-FROM balenlib/raspberrypi3-build
+FROM balenlib/raspberrypi3-jessie-build
 
 RUN apt-get update && apt-get install -yq \
   fontconfig-config fonts-dejavu-core libfontconfig1 ucf \
