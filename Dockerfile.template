@@ -1,9 +1,6 @@
-FROM balenalib/%%RESIN_MACHINE_NAME%%-golang:1.11.2-latest-build
+FROM balenalib/%%RESIN_MACHINE_NAME%%-golang:%%GOLANG_VERSION%%-latest-build
 
 ENV INITSYSTEM on
-
-# ENV GNATSD_VERSION 1.1.0
-
 ENV NATS_STREAMING_VERSION 0.11.2
 ENV GOBIN $GOPATH/bin
 ENV OS linux
