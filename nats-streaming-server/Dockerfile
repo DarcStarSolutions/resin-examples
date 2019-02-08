@@ -1,4 +1,4 @@
-FROM balenalib/raspberrypi3-golang:1.11.2-latest-build
+FROM balenalib/raspberrypi3-golang:1.11.2
 
 ENV NATS_STREAMING_VERSION 0.11.2
 ENV GOBIN $GOPATH/bin
