@@ -23,7 +23,7 @@ RUN unzip /nats-streaming-server.zip && \
     mkdir -p /etc/gnatsd && \
     mkdir -p /var/log/nats
 
-RUN ls -lrt
+RUN pwd && ls -lrt
 
 VOLUME ["/etc/gnatsd", "/var/log/nats/" ]
 CMD ["/bin/sh", "./stall.sh" ]
