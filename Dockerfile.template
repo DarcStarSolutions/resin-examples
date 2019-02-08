@@ -6,6 +6,8 @@ ENV INITSYSTEM on
 
 ENV NATS_STREAMING_VERSION 0.11.2
 ENV GOBIN $GOPATH/bin
+ENV OS
+ENV ARCH arm64
 
 RUN apt-get -q update && apt-get install -yq --no-install-recommends \
  	build-essential unzip && \
@@ -15,20 +17,20 @@ WORKDIR /go/src/github.com/resin-io-projects/resin-go-hello-world
 
 COPY 	. ./
 
-# ADD https://github.com/nats-io/gnatsd/releases/download/v${GNATSD_VERSION}/gnatsd-v${GNATSD_VERSION}-linux-arm7.zip /gnatsd.zip
+# ADD https://github.com/nats-io/gnatsd/releases/download/v${GNATSD_VERSION}/gnatsd-v${GNATSD_VERSION}-linux-${ARCH}.zip /gnatsd.zip
 
-ADD https://github.com/nats-io/nats-streaming-server/releases/download/v${NATS_STREAMING_VERSION}/nats-streaming-server-v${NATS_STREAMING_VERSION}-linux-arm7.zip /nats-streaming-server.zip
+ADD https://github.com/nats-io/nats-streaming-server/releases/download/v${NATS_STREAMING_VERSION}/nats-streaming-server-v${NATS_STREAMING_VERSION}-${OS}-${ARCH}.zip /nats-streaming-server.zip
 
 
 # RUN unzip /gnatsd.zip && \
-#    mv gnatsd-v${GNATSD_VERSION}-linux-arm7/gnatsd /gnatsd && \
+#    mv gnatsd-v${GNATSD_VERSION}-linux-/gnatsd /gnatsd && \
 #    rm -fr gnatsd-v${GNATSD_VERSION}-linux-arm7 /gnatsd.zip && \
 #    mkdir -p /etc/gnatsd && \
 #    mkdir -p /var/log/nats
 
 RUN unzip /nats-streaming-server.zip && \
-    mv nats-streaming-server-v${NATS_STREAMING_VERSION}-linux-arm7/nats-streaming-server /nats-streaming-server && \
-    rm -fr nats-streaming-server-v${NATS_STREAMING_VERSION}-linux-arm7 /nats-streaming-server.zip && \
+    mv nats-streaming-server-v${NATS_STREAMING_VERSION}-${OS}-${ARCH}/nats-streaming-server /nats-streaming-server && \
+    rm -fr nats-streaming-server-v${NATS_STREAMING_VERSION}-${OS}-${ARCH} /nats-streaming-server.zip && \
     mkdir -p /etc/gnatsd && \
     mkdir -p /var/log/nats
 
