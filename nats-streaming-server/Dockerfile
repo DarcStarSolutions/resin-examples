@@ -6,8 +6,6 @@ ENV OS linux
 ENV ARCH arm7
 
 RUN apt-get -q update
-RUN apt-get full-upgrade
-
 RUN apt-get install -yq --no-install-recommends \
  	unzip && \
 	apt-get clean && rm -rf /var/lib/apt/lists/*
