@@ -1,10 +1,10 @@
 FROM balenalib/raspberrypi3-golang:1.11.2
 
 # ENV INITSYSTEM on
-ENV NATS_STREAMING_VERSION 0.11.2
+# ENV NATS_STREAMING_VERSION 0.11.2
 ENV GOBIN $GOPATH/bin
-ENV OS linux
-ENV ARCH arm7
+# ENV OS linux
+# ENV ARCH arm7
 
 RUN apt-get -q update &&  apt-get install -yq --no-install-recommends \
    wget unzip && \
@@ -14,12 +14,12 @@ WORKDIR /go/src/github.com/resin-io-projects/resin-go-hello-world
 
 COPY 	./* ./
 
-RUN wget -O  /nats-streaming-server.zip https://github.com/nats-io/nats-streaming-server/releases/download/v${NATS_STREAMING_VERSION}/nats-streaming-server-v${NATS_STREAMING_VERSION}-${OS}-${ARCH}.zip
+RUN wget -O  /nats-streaming-server.zip https://github.com/nats-io/nats-streaming-server/releases/download/v0.11.2/nats-streaming-server-v0.11.2-linux-arm7.zip
 
 
 RUN unzip /nats-streaming-server.zip && \
-    mv nats-streaming-server-v${NATS_STREAMING_VERSION}-${OS}-${ARCH}/nats-streaming-server /nats-streaming-server && \
-    rm -fr nats-streaming-server-v${NATS_STREAMING_VERSION}-${OS}-${ARCH} /nats-streaming-server.zip && \
+    mv nats-streaming-server-v0.11.2-linux-arm7/nats-streaming-server /nats-streaming-server && \
+    rm -fr nats-streaming-server-v0.11.2-linux-arm7 /nats-streaming-server.zip && \
     mkdir -p /etc/gnatsd && \
     mkdir -p /var/log/nats
 
