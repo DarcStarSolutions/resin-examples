@@ -1,15 +1,15 @@
 FROM balenalib/%%BALENA_MACHINE_NAME%%-golang:1.11.2-latest-build
 
 ENV INITSYSTEM on
-# ENV NATS_STREAMING_VERSION "$NATS_STREAMING_VERSION"
+ENV NATS_STREAMING_VERSION 0.11.2
 ENV GOBIN $GOPATH/bin
 ENV OS linux
 ENV ARCH arm7
 
+RUN echo ${NATS_STREAMING_VERSION}
+
 RUN apt -q update
 # RUN apt full-upgrade
-
-RUN echo $NATS_STREAMING_VERSION
 
 RUN apt-get install -yq --no-install-recommends \
  	build-essential unzip && \
