@@ -6,7 +6,7 @@ ENV GOBIN $GOPATH/bin
 ENV OS linux
 ENV ARCH arm7
 
-RUN echo $NATS_STREAMING_VERSION
+RUN echo $BURP
 
 RUN apt-get -q update
 RUN apt-get full-upgrade
