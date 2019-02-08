@@ -6,7 +6,8 @@ ENV GOBIN $GOPATH/bin
 ENV OS linux
 ENV ARCH arm7
 
-RUN apt -q update && apt full-upgrade
+RUN apt -q update
+# RUN apt full-upgrade
 
 RUN apt-get install -yq --no-install-recommends \
  	build-essential unzip && \
