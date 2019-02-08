@@ -1,6 +1,6 @@
-FROM balenalib/raspberrypi3-golang:1.11.2-run
+FROM balenalib/raspberrypi3-golang:1.11.2
 
-ENV INITSYSTEM on
+# ENV INITSYSTEM on
 ENV NATS_STREAMING_VERSION 0.11.2
 ENV GOBIN $GOPATH/bin
 ENV OS linux
@@ -25,7 +25,7 @@ RUN unzip /nats-streaming-server.zip && \
 
 RUN pwd && ls -lrt
 
-VOLUME ["/etc/gnatsd", "/var/log/nats/" ]
+# VOLUME ["/etc/gnatsd", "/var/log/nats/" ]
 CMD ["/bin/sh", "./stall.sh" ]
 # EXPOSE 4222, 6222, 8222
 # CMD ["/nats-streaming-server", "-c", "gnatsd.conf"]
