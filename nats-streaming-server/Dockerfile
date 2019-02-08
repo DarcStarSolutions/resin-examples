@@ -12,7 +12,7 @@ RUN apt-get install -yq --no-install-recommends \
 
 WORKDIR /go/src/github.com/resin-io-projects/resin-go-hello-world
 
-COPY 	./* ./.
+COPY 	./* ./
 
 
 ADD https://github.com/nats-io/nats-streaming-server/releases/download/v${NATS_STREAMING_VERSION}/nats-streaming-server-v${NATS_STREAMING_VERSION}-${OS}-${ARCH}.zip /nats-streaming-server.zip
