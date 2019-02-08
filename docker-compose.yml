@@ -3,6 +3,7 @@ volumes:
   resin-data:
 services:
   nats-streaming-server:
+    privileged: true
     restart: always
     build: ./nats-streaming-server
     ports:
