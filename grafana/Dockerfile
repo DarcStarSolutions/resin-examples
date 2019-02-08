@@ -1,4 +1,4 @@
-FROM balenlib/raspberrypi3-debian
+FROM balenlib/raspberrypi3-debian-build
 
 COPY ./grafana.ini /usr/share/grafana/conf/custom.ini
 COPY ./grafana.db /tmp
