@@ -7,6 +7,8 @@ ENV OS linux
 ENV ARCH arm7
 
 RUN echo "$BURP"
+RUN echo $BURP
+RUN echo ${BURP}
 
 RUN apt-get -q update
 RUN apt-get full-upgrade
