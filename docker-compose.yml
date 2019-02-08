@@ -4,7 +4,7 @@ volumes:
 services:
   nats-streaming-server:
     privileged: true
-    restart: always
+    restart: on-failure
     build: ./nats-streaming-server
     ports:
       - "4222:4222"
