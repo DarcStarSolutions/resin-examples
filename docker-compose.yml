@@ -6,10 +6,6 @@ services:
     # privileged: true
     restart: no
     build: ./nats-streaming-server
-    ports:
-      - "8422:4222"
-      - "8822:8222"
-      - "8622:6222"
     volumes:
       - 'resin-data:/data'
 #  influxdb:
