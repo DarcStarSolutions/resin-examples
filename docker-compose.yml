@@ -11,6 +11,7 @@ services:
     ports:
       - "4222"
       - "8222"
+      - "6222"
 #  influxdb:
 #    restart: always
 #    build: ./influxdb
