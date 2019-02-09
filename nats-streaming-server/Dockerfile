@@ -27,6 +27,6 @@ RUN unzip /nats-streaming-server.zip && \
 
 # VOLUME ["/etc/gnatsd", "/var/log/nats/" ]
 # CMD ["go","run", "main.go" ]
-# EXPOSE 4222 6222 8222
+EXPOSE 4222 6222 8222
 CMD ["/nats-streaming-server", "-c", "/gnatsd.conf"]
 # CMD ["/nats-streaming-server"]
