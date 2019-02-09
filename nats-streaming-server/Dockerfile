@@ -14,14 +14,14 @@ RUN apt-get -q update &&  apt-get install -yq --no-install-recommends \
 
 COPY 	./gnatsd.conf /
 
-ADD   https://github.com/nats-io/nats-streaming-server/releases/download/v0.11.2/nats-streaming-server-v0.11.2-linux-arm7.zip /nats-streaming-server.zip
+ADD   https://github.com/nats-io/nats-streaming-server/releases/download/v0.12.0/nats-streaming-server-v0.12.0-linux-arm7.zip /nats-streaming-server.zip
 
 RUN go get github.com/nats-io/go-nats/examples/nats-bench && \
     go install github.com/nats-io/go-nats/examples/nats-bench
 
 RUN unzip /nats-streaming-server.zip && \
-    mv nats-streaming-server-v0.11.2-linux-arm7/nats-streaming-server /nats-streaming-server && \
-    rm -fr nats-streaming-server-v0.11.2-linux-arm7 /nats-streaming-server.zip && \
+    mv nats-streaming-server-v0.12.0-linux-arm7/nats-streaming-server /nats-streaming-server && \
+    rm -fr nats-streaming-server-v0.12.0-linux-arm7 /nats-streaming-server.zip && \
     mkdir -p /etc/gnatsd && \
     mkdir -p /data/log/nats
 
