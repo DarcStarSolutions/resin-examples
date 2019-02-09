@@ -8,6 +8,9 @@ services:
     build: ./nats-streaming-server
     volumes:
       - 'resin-data:/data'
+    ports:
+      - "4222"
+      - "8222"
 #  influxdb:
 #    restart: always
 #    build: ./influxdb
