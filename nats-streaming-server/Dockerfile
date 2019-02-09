@@ -12,7 +12,7 @@ RUN apt-get -q update &&  apt-get install -yq --no-install-recommends \
 
 # WORKDIR /go/src/github.com/resin-io-projects/resin-go-hello-world
 
-COPY 	./gnatsd.conf ./
+COPY 	./gnatsd.conf /
 
 ADD   https://github.com/nats-io/nats-streaming-server/releases/download/v0.11.2/nats-streaming-server-v0.11.2-linux-arm7.zip /nats-streaming-server.zip
 
@@ -26,5 +26,5 @@ RUN unzip /nats-streaming-server.zip && \
 # VOLUME ["/etc/gnatsd", "/var/log/nats/" ]
 # CMD ["go","run", "main.go" ]
 EXPOSE 4222 6222 8222
-CMD ["/nats-streaming-server", "-c", "gnatsd.conf"]
+CMD ["/nats-streaming-server", "-c", "/gnatsd.conf"]
 # CMD ["/nats-streaming-server"]
