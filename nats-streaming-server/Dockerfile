@@ -23,11 +23,11 @@ RUN unzip /nats-streaming-server.zip && \
     mv nats-streaming-server-v0.12.0-linux-arm7/nats-streaming-server /nats-streaming-server && \
     rm -fr nats-streaming-server-v0.12.0-linux-arm7 /nats-streaming-server.zip && \
     mkdir -p /etc/gnatsd && \
-    mkdir -p /data/log/nats
+    mkdir -p /var/log/nats
 
 # VOLUME ["/etc/gnatsd", "/var/log/nats/" ]
 # CMD ["go","run", "main.go" ]
-# EXPOSE 4222 6222 8222
+EXPOSE 4222 8222
 ENTRYPOINT ["/nats-streaming-server"]
 CMD ["-c", "/gnatsd.conf"]
 # CMD ["/nats-streaming-server"]
