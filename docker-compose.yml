@@ -4,7 +4,7 @@ volumes:
 services:
   nats-streaming-server:
     privileged: true
-    restart: no
+    restart: always
     build: ./nats-streaming-server
     volumes:
       - 'resin-data:/data'
